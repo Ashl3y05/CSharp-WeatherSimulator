@@ -7,7 +7,7 @@
             Console.WriteLine("Please enter the number of days:");
             int days = int.Parse(Console.ReadLine());
             Console.WriteLine("-----");
-
+            int maxTemp, minTemp;
             int[] temperatures = new int[days];
 
             Random randomTemp = new Random();
@@ -29,6 +29,11 @@
                 Console.WriteLine(item);
             }
             Console.WriteLine($"Average Temperature: {averageTemp}");
+            Console.WriteLine("-----------");
+
+            GetMaxAndMinTemp(temperatures, out maxTemp, out minTemp);
+
+            Console.WriteLine($"The Maximum Temperature is: {maxTemp} \nThe Minimum Temperature is: {minTemp}");
             Console.ReadKey();
         }
         /// <summary>
@@ -73,6 +78,12 @@
                 total += num;
             }
             return total/days;
+        }
+
+        static void GetMaxAndMinTemp(int[] temps, out int maxTemp, out int minTemp) {
+          maxTemp = temps.Max();
+          minTemp = temps.Min();
+
         }
     }
 }

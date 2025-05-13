@@ -1,4 +1,6 @@
-﻿namespace S4___WeatherSimulator
+﻿using System.Resources;
+
+namespace S4___WeatherSimulator
 {
     internal class Program
     {
@@ -34,8 +36,11 @@
             GetMaxAndMinTemp(temperatures, out maxTemp, out minTemp);
 
             Console.WriteLine($"The Maximum Temperature is: {maxTemp} \nThe Minimum Temperature is: {minTemp}");
+
+            Console.WriteLine($"The common weather is {GetCommonWeather(weatherPerDay)}");
             Console.ReadKey();
         }
+
         /// <summary>
         /// This method takes the number of days and an array of temperatures as input and returns an array of weather types for each day.
         /// </summary>
@@ -65,6 +70,7 @@
             }
             return weathers;
         }
+
         /// <summary>
         /// This method takes the number of days and an array of temperatures as input and returns the average temperature.
         /// </summary>
@@ -84,6 +90,37 @@
           maxTemp = temps.Max();
           minTemp = temps.Min();
 
+        }
+
+        /// <summary>
+        /// Gets the Common weather from an array of weathers
+        /// </summary>
+        /// <param name="weatherDays"></param>
+        /// <returns>Returns a String</returns>
+        static string GetCommonWeather(string[] weatherDays) {
+            int count = 0;
+            
+            string commonWeather = weatherDays[0];
+
+            for (int i=0; i<weatherDays.Length; i++) {
+                int currentCount = 0;
+                for (int j=0; j<weatherDays.Length; j++) {
+
+                    if (weatherDays[i] == weatherDays[j]) {
+
+                        currentCount++; 
+
+                    }
+                }
+                if (currentCount > count)
+                {
+                    count = currentCount;
+                    commonWeather = weatherDays[i];
+                }
+
+            }
+
+            return commonWeather;
         }
     }
 }
